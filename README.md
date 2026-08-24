@@ -9,6 +9,7 @@ Built with Next.js 16 (App Router), Supabase, and Inngest.
 
 > **Portfolio project.** This repo ships with no credentials and connects to no
 > hosted database. Bring your own Supabase project and API keys to run it.
+> This is a clone of a client tool, repurposed for portfolio and purged of any company data, branding, names, etc.
 
 ---
 
