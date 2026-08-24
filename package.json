@@ -1,0 +1,37 @@
+{
+  "name": "content-studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n next,inngest -c blue,magenta \"next dev\" \"npx inngest-cli@latest dev -u http://localhost:3000/api/inngest\"",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "test": "vitest run",
+    "db:types": "supabase gen types typescript --local > src/lib/database.types.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.7",
+    "ffmpeg-static": "^5.3.0",
+    "framer-motion": "^12.42.2",
+    "inngest": "^4.13.0",
+    "next": "^16.3.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "concurrently": "^10.0.3",
+    "eslint": "^9",
+    "eslint-config-next": "^16.3.2",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^4.1.10"
+  }
+}

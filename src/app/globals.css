@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* Design tokens — source of truth is docs/DESIGN.md §2. Components consume
+   these via Tailwind classes only; hardcoded hex in a component file is a
+   review failure. */
+:root {
+  --bg-base: #120a2a;
+  --bg-nav: #0d0722;
+  --bg-raised: #1b1140;
+  --bg-hover: #241755;
+
+  --primary: #7c3aed;
+  --primary-bright: #8b5cf6;
+  --primary-soft: #a78bfa;
+  --gradient-brand: linear-gradient(92deg, #7c3aed 0%, #b794f6 100%);
+
+  --text-primary: #f5f3ff;
+  --text-secondary: #a79fc4;
+  --text-faint: #6e668f;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(167, 139, 250, 0.35);
+
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --info: #60a5fa;
+
+  --glow-primary: 0 0 24px rgba(124, 58, 237, 0.45);
+  --glow-primary-hover: 0 0 32px rgba(124, 58, 237, 0.6);
+}
+
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-nav: var(--bg-nav);
+  --color-bg-raised: var(--bg-raised);
+  --color-bg-hover: var(--bg-hover);
+
+  --color-primary: var(--primary);
+  --color-primary-bright: var(--primary-bright);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-faint: var(--text-faint);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-poppins);
+
+  --shadow-glow: var(--glow-primary);
+  --shadow-glow-hover: var(--glow-primary-hover);
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-secondary);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+}
+
+/* Faint marketing-site grid — on --bg-base surfaces only, never on cards. */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Card hover: background shift + 1px lift (docs/DESIGN.md §4). Pure CSS so it
+   costs no JS; collapses under reduced-motion via the global rule below. */
+.card-hover {
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease,
+    border-color 150ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-1px);
+}
+
+/* Gradient text — at most one word in a page title (docs/DESIGN.md §2). */
+.text-gradient-brand {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Visible focus ring on every interactive element (docs/DESIGN.md §5). */
+:focus-visible {
+  outline: 2px solid var(--primary-soft);
+  outline-offset: 2px;
+}
+
+/* Utility type for badges/eyebrows: 11px uppercase, tracked. */
+.type-utility {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes spinner-dot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Indeterminate progress bar: a bar sliding across the track (providers don't
+   report a real percentage, so this signals "working" without a fake number). */
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+.animate-spinner-dot {
+  animation: spinner-dot 0.9s linear infinite;
+}
+
+.animate-progress-indeterminate {
+  animation: progress-indeterminate 1.4s ease-in-out infinite;
+}
+
+/* All motion collapses to instant state changes (docs/DESIGN.md §4). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

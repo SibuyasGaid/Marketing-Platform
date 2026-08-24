@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Content Studio, User Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+  :root {
+    --indigo: #1A0F3A;
+    --violet: #892BE2;
+    --violet-soft: #f3ebfd;
+    --gold: #FFD600;
+    --gold-soft: #fff8dd;
+    --ink: #24203a;
+    --muted: #6b6580;
+    --line: #e7e3f0;
+    --page: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page {
+    size: Letter;
+    margin: 14mm 15mm;
+  }
+
+  html, body { margin: 0; padding: 0; background: var(--page); }
+
+  body {
+    font-family: 'Open Sans', 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif; margin: 0; }
+
+  a { color: var(--violet); text-decoration: none; }
+
+  /* Header banner */
+  .banner {
+    background: linear-gradient(120deg, #1A0F3A 0%, #3a1a6e 55%, #892BE2 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 26px 28px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner::after {
+    content: "";
+    position: absolute;
+    left: 28px; right: 28px; bottom: 16px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 3px;
+    opacity: .9;
+  }
+  .banner .kicker {
+    font-family: 'Poppins', sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .banner h1 {
+    font-size: 23pt;
+    font-weight: 700;
+    margin: 8px 0 4px;
+    line-height: 1.1;
+  }
+  .banner p { margin: 0; color: #d9cff2; font-size: 10.5pt; padding-bottom: 10px; }
+
+  .intro {
+    margin: 16px 0 4px;
+    font-size: 11pt;
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin: 14px 0;
+    font-size: 10pt;
+    break-inside: avoid;
+  }
+  .callout .label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 8.5pt;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .callout.note { background: var(--violet-soft); border-left: 4px solid var(--violet); }
+  .callout.note .label { color: var(--violet); }
+  .callout.important { background: var(--gold-soft); border-left: 4px solid #e0ba00; }
+  .callout.important .label { color: #8a6d00; }
+
+  /* Section */
+  section.tab { margin-top: 22px; break-inside: avoid; }
+  .tab-head {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .tab-num {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--indigo);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tab-head h2 { font-size: 14.5pt; color: var(--indigo); font-weight: 600; }
+  .tab-head .sub { font-size: 9pt; color: var(--muted); font-family: 'Open Sans', sans-serif; margin-top: 1px; }
+
+  h2 small { display: block; font-weight: 400; }
+
+  .lead { margin: 0 0 10px; color: var(--ink); }
+
+  ol.steps { margin: 6px 0 4px; padding-left: 0; list-style: none; counter-reset: step; }
+  ol.steps > li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 8px;
+    break-inside: avoid;
+  }
+  ol.steps > li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0; top: -1px;
+    width: 20px; height: 20px;
+    background: var(--violet-soft);
+    color: var(--violet);
+    border-radius: 50%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 8.5pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--indigo);
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 8.5pt;
+    padding: 1px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .ui { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--indigo); }
+
+  .subhead {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--violet);
+    font-size: 10.5pt;
+    margin: 14px 0 4px;
+  }
+
+  ul.plain { margin: 4px 0; padding-left: 18px; }
+  ul.plain li { margin-bottom: 4px; }
+
+  .faq { margin-top: 6px; break-inside: avoid; }
+  .faq dt { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--indigo); margin-top: 9px; font-size: 10pt; }
+  .faq dd { margin: 2px 0 0; color: var(--ink); }
+
+  footer {
+    margin-top: 26px;
+    border-top: 2px solid var(--line);
+    padding-top: 10px;
+    font-size: 8.5pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pagebreak { break-before: page; }
+</style>
+</head>
+<body>
+
+  <div class="banner">
+    <span class="kicker">Content Studio</span>
+    <h1>How to Use the App</h1>
+    <p>A simple, step by step guide for reviewing and approving content</p>
+  </div>
+
+  <p class="intro">
+    This app is your team's workspace for creating marketing content, reviewing it, and approving what goes out.
+    It has four areas, shown as tabs down the left side: <span class="ui">Brand Images</span>, <span class="ui">Content Engine</span>,
+    <span class="ui">Approval Queue</span>, and <span class="ui">Admin</span>. You do not need any technical knowledge to use it.
+    The most important thing to know: <strong>nothing is ever posted to social media until a person approves it.</strong>
+  </p>
+
+  <div class="callout important">
+    <span class="label">Please read first, for this test</span>
+    The social media connections (Instagram, Facebook, LinkedIn, YouTube) are not switched on yet, so they will be set up later.
+    That means everything in the app works normally except the final "go live" step. When you click <span class="ui">Approve</span>,
+    the app will try to publish and the item will show as <strong>failed</strong> in the queue. That is expected right now and is not a mistake.
+    Once the social accounts are connected, <span class="ui">Approve</span> will post for real.
+  </div>
+
+  <!-- GETTING STARTED -->
+  <section class="tab">
+    <div class="tab-head">
+      <div class="tab-num">&#9654;</div>
+      <div>
+        <h2>Signing in</h2>
+        <div class="sub">Getting into the app</div>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Open the app link you were given in your web browser (Chrome or Edge work best).</li>
+      <li>On the <span class="ui">Content Studio</span> sign in screen, type your email and password.</li>
+      <li>Click <span class="btn">Sign in</span>. You will land on the <span class="ui">Brand Images</span> tab.</li>
+    </ol>
+    <p style="font-size:9.5pt;color:var(--muted);margin-top:2px;">
+      Top right of every screen you will see: a small <span class="ui">Today $</span> amount (how much AI usage has cost today),
+      a <span class="ui">Generate</span> button, and your initials. Click your initials any time to see your role or to <span class="ui">Sign out</span>.
+    </p>
+  </section>
+
+  <!-- TAB 1 -->
+  <section class="tab">
+    <div class="tab-head">
+      <div class="tab-num">1</div>
+      <div>
+        <h2>Brand Images</h2>
+        <div class="sub">Create a single branded graphic from a description</div>
+      </div>
+    </div>
+    <p class="lead">Use this when you want one image, for example an announcement graphic or a quote card.</p>
+    <ol class="steps">
+      <li>In the left column, click a <span class="ui">Brand preset</span> (this sets the style). If none exists, click <span class="ui">+ New preset</span> and fill in a name and tone.</li>
+      <li>Optional: under <span class="ui">Avatar references</span> pick a person to appear, and under <span class="ui">Brand references</span> pick a logo or product shot to guide the look.</li>
+      <li>On the right, under <span class="ui">Brand / page</span>, choose which account this post is for.</li>
+      <li>Under <span class="ui">Platforms</span>, click one or more (Instagram, Facebook, LinkedIn). One image and caption is made for each, sized correctly.</li>
+      <li>In <span class="ui">Describe the image</span>, type what you want in plain words. You can also click <span class="ui">+ Attach reference</span> to add a photo for this one image.</li>
+      <li>Click <span class="btn">Generate</span>. Your image appears below under <span class="ui">History</span> and shows "Generating" for about 30 seconds, then updates by itself.</li>
+    </ol>
+    <div class="subhead">Refining an image</div>
+    <p style="margin-top:0;">Each finished image has a row of buttons:</p>
+    <ul class="plain">
+      <li><span class="ui">Edit</span>: change only what you describe (for example "make the background navy") while keeping the rest the same.</li>
+      <li><span class="ui">Edit region</span>: brush over the exact spot you want changed, then describe the change.</li>
+      <li><span class="ui">Regenerate</span>: a fresh new take using a note you add. The layout may change.</li>
+      <li><span class="ui">Download</span>: save the image to your computer.</li>
+      <li><span class="ui">Send to queue</span>: when you are happy, this sends it to the <span class="ui">Approval Queue</span> for review.</li>
+    </ul>
+  </section>
+
+  <!-- TAB 2 -->
+  <section class="tab pagebreak">
+    <div class="tab-head">
+      <div class="tab-num">2</div>
+      <div>
+        <h2>Content Engine</h2>
+        <div class="sub">Turn a recording into ready made posts, or generate a week at once</div>
+      </div>
+    </div>
+
+    <div class="subhead">Option A: Generate a full week in one click</div>
+    <ol class="steps">
+      <li>At the top, find <span class="ui">Generate this week's content</span> and click <span class="btn">Generate</span>.</li>
+      <li>Pick the <span class="ui">Brand / page</span>, then type a <span class="ui">Theme</span> for the week (for example "Spring product launch push").</li>
+      <li>Click <span class="btn">Confirm and generate week</span>. It creates 10 image posts (Monday to Friday, Instagram and LinkedIn) and sends them to the <span class="ui">Approval Queue</span>.</li>
+    </ol>
+
+    <div class="subhead">Option B: Turn a webinar or video into clips and captions</div>
+    <ol class="steps">
+      <li>Under <span class="ui">Ingest a video</span>, drag a file onto the box or click to browse (video or audio, up to 2GB). Or paste a direct media link.</li>
+      <li>Give it a <span class="ui">Title</span>, then click <span class="btn">Ingest video</span>.</li>
+      <li>Watch the progress steps: <span class="ui">Transcribe</span>, then <span class="ui">Analyze</span>, then <span class="ui">Rank</span>. This can take a few minutes for a long video.</li>
+      <li>When ready, the best moments appear as <span class="ui">ranked segments</span> with a score. Pick the <span class="ui">Brand / page</span>, click the segments you like, and choose the platforms.</li>
+      <li>Optional: tick <span class="ui">Create avatar hook (HeyGen)</span> to also make a short talking video.</li>
+      <li>Click <span class="btn">Create content</span>. The clips and captions land in the <span class="ui">Approval Queue</span>.</li>
+    </ol>
+    <p style="font-size:9.5pt;color:var(--muted);">
+      There is also a <span class="ui">Competitors</span> card where you can add competitors to keep an eye on. The app compiles a short weekly summary.
+    </p>
+  </section>
+
+  <!-- TAB 3 -->
+  <section class="tab">
+    <div class="tab-head">
+      <div class="tab-num">3</div>
+      <div>
+        <h2>Approval Queue</h2>
+        <div class="sub">The important one: review everything and decide what goes out</div>
+      </div>
+    </div>
+    <p class="lead">Everything created in the other tabs arrives here first. Nothing is published until you approve it.</p>
+    <ol class="steps">
+      <li>You will see a week board with cards grouped by day. Use the <span class="ui">Platform</span> and <span class="ui">Status</span> menus at the top to filter.</li>
+      <li>Click any card to open a panel on the right with the full preview, the caption, and a history of who reviewed it.</li>
+      <li>To send it out, click <span class="btn">Approve</span>. (During this test it will show as failed, as noted on the first page. That is expected until the social accounts are connected.)</li>
+      <li>To send it back for changes, click <span class="ui">Request edits</span>, type what should change, and click <span class="btn">Send for regeneration</span>. The item is remade with your notes and returns here.</li>
+      <li>If an item shows as <span class="ui">failed</span>, open it and click <span class="ui">Retry</span> to send it back for a fresh review.</li>
+    </ol>
+
+    <div class="subhead">Planning ahead: the content calendar</div>
+    <ol class="steps">
+      <li>Scroll to <span class="ui">Content calendar</span> and click <span class="ui">+ Plan a day</span>.</li>
+      <li>Choose a <span class="ui">Date</span>, the <span class="ui">Brand / page</span>, the <span class="ui">Platforms</span>, and type a <span class="ui">Prompt for the day</span>.</li>
+      <li>Click <span class="btn">Add to calendar</span>. It will generate automatically each morning and appear here for approval.</li>
+      <li>To try it right away, click <span class="ui">Generate now</span> next to any planned day.</li>
+    </ol>
+  </section>
+
+  <!-- TAB 4 -->
+  <section class="tab">
+    <div class="tab-head">
+      <div class="tab-num">4</div>
+      <div>
+        <h2>Admin</h2>
+        <div class="sub">Costs and system health, for administrators</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-bottom:4px;">This tab shows how much the AI tools have cost and whether everything is running smoothly.</p>
+    <ul class="plain">
+      <li>Spend for today and the last 7 days, broken down by tool and task.</li>
+      <li>A list of recent runs with the cost of each.</li>
+      <li>System health, including anything that failed and needs a second look.</li>
+    </ul>
+    <p style="font-size:9.5pt;color:var(--muted);">This tab is visible to administrators only.</p>
+  </section>
+
+  <!-- GOOD TO KNOW -->
+  <section class="tab">
+    <div class="tab-head">
+      <div class="tab-num">?</div>
+      <div>
+        <h2>Good to know</h2>
+        <div class="sub">Quick answers</div>
+      </div>
+    </div>
+    <dl class="faq">
+      <dt>Can I accidentally post something?</dt>
+      <dd>No. Nothing goes public until someone approves it in the Approval Queue, and only admins and reviewers can approve.</dd>
+
+      <dt>Why does it say "failed" after I approve?</dt>
+      <dd>Because the social media accounts are not connected yet for this test. Everything else worked. Once they are connected, approving will publish for real.</dd>
+
+      <dt>Does creating images cost money?</dt>
+      <dd>Each generation uses a small amount of AI credit. You can see the running total at the top right (<span class="ui">Today $</span>) and the full breakdown on the Admin tab. There is a daily spending limit built in.</dd>
+
+      <dt>How long does an image take?</dt>
+      <dd>Usually around 30 seconds. The page updates on its own, so you can just wait and watch.</dd>
+
+      <dt>What are the two brands?</dt>
+      <dd>The accounts you have set up. You choose which one each post is for so the captions and styling match.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <span>Content Studio</span>
+    <span>Internal use only</span>
+  </footer>
+
+</body>
+</html>

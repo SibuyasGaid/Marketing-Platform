@@ -1,0 +1,11 @@
+-- HeyGen v2 -> v3 migration.
+--
+-- Avatar videos moved from the legacy v2 talking_photo pipeline to the v3
+-- Photo Avatar pipeline (POST /v3/videos, type:"avatar"). The identifier stored
+-- in avatar_references.provider_asset_id changed meaning: it used to hold a v2
+-- `talking_photo_id`, and now must hold a v3 `avatar_id` (Photo Avatar look id).
+-- A v2 id is not a valid v3 avatar_id and would make video generation fail.
+--
+-- Clearing it forces each person to re-register as a v3 Photo Avatar on next
+-- use (a one-time, low-cost re-upload). No RLS/table changes — data-only reset.
+update avatar_references set provider_asset_id = null;
