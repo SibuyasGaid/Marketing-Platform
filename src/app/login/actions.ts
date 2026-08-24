@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { DEMO_MESSAGE, isDemoMode } from "@/lib/demoMode";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 const CredentialsSchema = z.object({
@@ -17,6 +18,8 @@ export async function signIn(
   _prevState: LoginFormState,
   formData: FormData,
 ): Promise<LoginFormState> {
+  if (isDemoMode()) return { error: DEMO_MESSAGE };
+
   const parsed = CredentialsSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -36,6 +39,9 @@ export async function signIn(
 }
 
 export async function signOut(): Promise<void> {
+  // No session to end in demo mode; land back on the entry page.
+  if (isDemoMode()) redirect("/login");
+
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
   redirect("/login");

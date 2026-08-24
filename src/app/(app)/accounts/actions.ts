@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { AppError } from "@/lib/errors";
+import { DemoModeError, isDemoMode } from "@/lib/demoMode";
 import { listPages } from "@/lib/meta";
 import { connectMetaPage } from "@/lib/metaConnect";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -124,6 +125,10 @@ function batchResultToState(
 }
 
 async function requireUser(): Promise<Profile> {
+  // Demo mode: every action funnels through here, so one throw covers them all.
+  // DemoModeError extends AppError, so the toState below renders its message.
+  if (isDemoMode()) throw new DemoModeError();
+
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },

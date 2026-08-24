@@ -1,4 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
+import { createDemoSupabaseClient } from "@/lib/demo/demoClient";
+import { isDemoMode } from "@/lib/demoMode";
 
 /**
  * Service-role client. SERVER-ONLY: bypasses RLS — used exclusively by
@@ -10,6 +12,9 @@ import { createClient } from "@supabase/supabase-js";
  * full env, so the app shell works before every vendor key is configured.
  */
 export function createSupabaseAdminClient() {
+  // No database configured — serve the fixture-backed tour instead of throwing.
+  if (isDemoMode()) return createDemoSupabaseClient();
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url) throw new Error("Missing environment variable: NEXT_PUBLIC_SUPABASE_URL");

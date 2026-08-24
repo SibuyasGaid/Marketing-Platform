@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { getUsageService } from "@/lib/container";
+import { isDemoMode } from "@/lib/demoMode";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { ProfileRepository } from "@/repositories/ProfileRepository";
 
@@ -10,6 +11,10 @@ const ResolveAlertSchema = z.object({ alertId: z.uuid() });
 
 /** Admin-only: clears a provider credit alert after the account is topped up. */
 export async function resolveProviderAlert(formData: FormData): Promise<void> {
+  // Nothing to resolve without a database; the action returns void, so the
+  // demo simply does nothing rather than surfacing an error.
+  if (isDemoMode()) return;
+
   const { alertId } = ResolveAlertSchema.parse({ alertId: formData.get("alertId") });
 
   const supabase = await createSupabaseServerClient();

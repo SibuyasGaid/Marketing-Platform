@@ -120,6 +120,7 @@ export function AppShell({
   usageTodayUsd,
   alerts,
   activeCounts,
+  demoMode = false,
   children,
 }: {
   profile: ShellProfile;
@@ -127,6 +128,8 @@ export function AppShell({
   alerts: ProviderAlertView[];
   /** In-flight generation counts per section, for the nav "working" cue. */
   activeCounts?: { images: number; videos: number };
+  /** True when no database is configured; shows the read-only tour banner. */
+  demoMode?: boolean;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -189,13 +192,13 @@ export function AppShell({
       >
         <div className={`mb-8 flex items-center px-5 ${isCollapsed ? "justify-center px-0" : ""}`}>
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-display text-lg font-bold text-text-primary">AI</span>
+            <span className="font-display text-lg font-bold text-text-primary">CS</span>
             {!isCollapsed ? (
               <span className="leading-tight">
                 <span className="block font-display text-[11px] font-bold uppercase tracking-[0.12em] text-text-primary">
-                  Agency
+                  Content
                 </span>
-                <span className="type-utility block text-text-faint">Institute</span>
+                <span className="type-utility block text-text-faint">Studio</span>
               </span>
             ) : null}
           </Link>
@@ -301,6 +304,15 @@ export function AppShell({
             </div>
           </div>
         </header>
+
+        {demoMode ? (
+          <div className="border-b border-border-subtle bg-primary/10 px-6 py-2.5">
+            <p className="text-sm text-text-secondary">
+              <span className="font-semibold text-text-primary">Demo build.</span> No database is
+              connected, so everything here is sample data and nothing you do is saved.
+            </p>
+          </div>
+        ) : null}
 
         <main className="bg-grid flex-1 p-6">{children}</main>
       </div>

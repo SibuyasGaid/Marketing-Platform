@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { AppShell } from "@/components/shell/AppShell";
 import type { ProviderAlertView } from "@/components/usage/ProviderAlertModal";
 import { getUsageService } from "@/lib/container";
+import { isDemoMode } from "@/lib/demoMode";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { ContentItemRepository } from "@/repositories/ContentItemRepository";
@@ -53,6 +54,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       usageTodayUsd={usageTodayUsd}
       alerts={alerts.map(({ id, provider, message }) => ({ id, provider, message }))}
       activeCounts={activeCounts}
+      demoMode={isDemoMode()}
     >
       {children}
     </AppShell>

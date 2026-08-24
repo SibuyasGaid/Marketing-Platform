@@ -10,6 +10,7 @@ import {
   getUsageService,
 } from "@/lib/container";
 import { AppError } from "@/lib/errors";
+import { DemoModeError, isDemoMode } from "@/lib/demoMode";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { BUCKETS, isOneoffReferencePath, objectExists } from "@/lib/supabase/storage";
@@ -26,6 +27,10 @@ export interface ActionState {
 const OK: ActionState = { error: null, ok: true };
 
 async function requireUser(): Promise<Profile> {
+  // Demo mode: every action funnels through here, so one throw covers them all.
+  // DemoModeError extends AppError, so the toState below renders its message.
+  if (isDemoMode()) throw new DemoModeError();
+
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },

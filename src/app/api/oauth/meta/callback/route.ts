@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     // One Page → connect it directly. Multiple Pages under this login → stash a
     // short-lived pending record (holds the user token, encrypted) and send the
     // user to a picker so they choose which Page maps to THIS account. This is
-    // what makes one FB login serve two accounts (Agency + Acquisition).
+    // what makes one FB login serve two separate accounts.
     if (pages.length > 1) {
       await repo.upsert({
         accountSlug: state.accountSlug,

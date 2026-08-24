@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isDemoMode } from "@/lib/demoMode";
 
 /**
  * Auth proxy (Next 16 replacement for middleware.ts).
@@ -9,6 +10,18 @@ import { NextResponse, type NextRequest } from "next/server";
  * matcher — they verify their own signatures instead.
  */
 export default async function proxy(request: NextRequest) {
+  // Demo mode has no auth provider to check against, and every route is a
+  // read-only tour, so the gate is skipped rather than redirecting forever.
+  // Writes are refused in the server actions themselves, not here.
+  if (isDemoMode()) {
+    if (request.nextUrl.pathname.startsWith("/login")) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next({ request });
+  }
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(

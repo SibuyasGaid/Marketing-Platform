@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { AppError } from "@/lib/errors";
+import { DEMO_MESSAGE, isDemoMode } from "@/lib/demoMode";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { BUCKETS, removeFromBucket } from "@/lib/supabase/storage";
@@ -28,6 +29,8 @@ export async function deleteContentItem(
   formData: FormData,
 ): Promise<DeleteState> {
   try {
+    if (isDemoMode()) return { error: DEMO_MESSAGE };
+
     const supabase = await createSupabaseServerClient();
     const {
       data: { user },
@@ -83,6 +86,8 @@ export async function deleteSourceVideo(
   formData: FormData,
 ): Promise<DeleteState> {
   try {
+    if (isDemoMode()) return { error: DEMO_MESSAGE };
+
     const supabase = await createSupabaseServerClient();
     const {
       data: { user },

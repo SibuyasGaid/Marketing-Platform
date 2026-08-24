@@ -41,7 +41,7 @@ Glow: primary buttons get `box-shadow: 0 0 24px rgba(124,58,237,0.45)`; intensif
 - **Display / headings:** Poppins (600, 700) — matches the site's bold geometric headline voice. Page titles ~28px/700, section titles 20px/600, card titles 16px/600.
 - **Body / UI:** Inter (400, 500) — 14px base for dashboard density, 13px for table/metadata rows, `--text-secondary` by default.
 - **Utility (badges, eyebrows):** Inter 11–12px, 500, uppercase, `letter-spacing: 0.08em` — mirrors the site's "NOW ENROLLING" chip style.
-- Gradient text (`--gradient-brand` with `background-clip: text`) is reserved for at most one word in a page's title, exactly like the site treats "AI Agency". Never on body text or labels.
+- Gradient text (`--gradient-brand` with `background-clip: text`) is reserved for at most one word in a page's title. Never on body text or labels.
 - Load both fonts via `next/font/google` with `display: swap`.
 
 ### Shape & spacing

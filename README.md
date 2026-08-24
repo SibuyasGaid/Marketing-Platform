@@ -7,9 +7,13 @@ code path can bypass.
 
 Built with Next.js 16 (App Router), Supabase, and Inngest.
 
-> **Portfolio project.** This repo ships with no credentials and connects to no
-> hosted database. Bring your own Supabase project and API keys to run it.
-> This is a clone of a client tool, repurposed for portfolio and purged of any company data, branding, names, etc.
+> **Portfolio project.** This is a clone of a client tool, repurposed for
+> portfolio and purged of any company data, branding, names, etc. It ships with
+> no credentials and connects to no hosted database. It runs anyway: with
+> Supabase unconfigured the app starts in **demo mode** and serves the full
+> interface against in-memory sample data, so you can clone it and browse every
+> screen with `npm install && npm run build && npm start`. Supply your own
+> Supabase project and API keys to make it real.
 
 ---
 
@@ -82,9 +86,27 @@ state is signed and bound to the user id. Stored social tokens are encrypted at
 rest with AES-256-GCM. Secrets appear as env var *names* only — never in code,
 logs, or error messages. See [docs/SECURITY.md](docs/SECURITY.md).
 
+## Demo mode
+
+When `NEXT_PUBLIC_SUPABASE_URL` or `SUPABASE_SERVICE_ROLE_KEY` is missing, the
+app serves a read-only tour instead of failing on the first query:
+
+- Pages render against fixtures in `src/lib/demo/`, fed through the **real**
+  repositories — the actual column mapping and domain conversion still run.
+- Generated media resolves to inline SVG art matching each sample account's
+  style guide, so the page is self-contained with no external requests.
+- Auth is bypassed (there is no auth provider to check against) and anything
+  that would write returns "nothing is saved" instead.
+
+Interception lives in `createSupabaseAdminClient()` / `createSupabaseServerClient()`,
+which hand back a stub client. No repository, service, or page contains a demo
+branch. Setting both Supabase vars turns it off with no code change, and the
+auth gate is fully enforced the moment it is off.
+
 ## Running it
 
-Requires Node 20+, a Supabase project, and an Inngest account.
+Requires Node 20+. A Supabase project and an Inngest account are needed for real
+use; without them you get demo mode.
 
 ```bash
 npm install

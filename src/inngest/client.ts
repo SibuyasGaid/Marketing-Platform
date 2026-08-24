@@ -89,5 +89,5 @@ export const calendarGenerateRequestedEvent = eventType("calendar/generate-reque
 });
 
 export const inngest = new Inngest({
-  id: "ai-institute-marketing-platform",
+  id: "content-studio",
 });
