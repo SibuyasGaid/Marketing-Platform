@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { getServerEnv, transcriptionConfig } from "@/lib/config";
 import { ProviderCreditsError, ProviderError } from "@/lib/errors";
 import type {
@@ -180,19 +181,42 @@ export class GeminiTranscriptionProvider implements TranscriptionProvider {
   }
 }
 
-function parseSegments(raw: string): TranscriptSegment[] {
+// The model is asked for snake_case but sometimes answers in camelCase, so
+// both spellings are accepted. Anything else fails validation.
+const RawSegmentSchema = z.object({
+  start_s: z.coerce.number().optional(),
+  startS: z.coerce.number().optional(),
+  end_s: z.coerce.number().optional(),
+  endS: z.coerce.number().optional(),
+  text: z.string().optional(),
+});
+const RawTranscriptSchema = z.object({ segments: z.array(RawSegmentSchema).optional() });
+
+/**
+ * Validates the model's transcript JSON (AGENTS.md rule 5). Returns [] for
+ * unparseable or off-schema output; the caller turns that into a
+ * ProviderError, so a bad response fails the job instead of storing junk.
+ */
+export function parseSegments(raw: string): TranscriptSegment[] {
+  const cleaned = raw
+    .trim()
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/, "");
+  let json: unknown;
   try {
-    const parsed = JSON.parse(raw) as { segments?: Array<Record<string, unknown>> };
-    return (parsed.segments ?? [])
-      .map((segment) => ({
-        startS: Number(segment.start_s ?? segment.startS ?? 0),
-        endS: Number(segment.end_s ?? segment.endS ?? 0),
-        text: String(segment.text ?? "").trim(),
-      }))
-      .filter((segment) => segment.text.length > 0);
+    json = JSON.parse(cleaned);
   } catch {
     return [];
   }
+  const result = RawTranscriptSchema.safeParse(json);
+  if (!result.success) return [];
+  return (result.data.segments ?? [])
+    .map((segment) => ({
+      startS: segment.start_s ?? segment.startS ?? 0,
+      endS: segment.end_s ?? segment.endS ?? 0,
+      text: (segment.text ?? "").trim(),
+    }))
+    .filter((segment) => segment.text.length > 0);
 }
 
 function sleep(ms: number): Promise<void> {
