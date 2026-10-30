@@ -36,7 +36,7 @@ export default function LoginPage() {
             </p>
             <Link
               href="/"
-              className="rounded-xl bg-primary px-4 py-2.5 text-center text-sm font-semibold text-text-primary transition-colors hover:bg-primary-bright"
+              className="rounded-xl bg-primary px-4 py-2.5 text-center text-sm font-semibold text-on-primary transition-colors hover:bg-primary-bright"
             >
               Enter the demo
             </Link>

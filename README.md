@@ -7,13 +7,19 @@ code path can bypass.
 
 Built with Next.js 16 (App Router), Supabase, and Inngest.
 
-> **Portfolio project.** This is a clone of a client tool, repurposed for
-> portfolio and purged of any company data, branding, names, etc. It ships with
-> no credentials and connects to no hosted database. It runs anyway: with
-> Supabase unconfigured the app starts in **demo mode** and serves the full
-> interface against in-memory sample data, so you can clone it and browse every
-> screen with `npm install && npm run build && npm start`. Supply your own
-> Supabase project and API keys to make it real.
+> **This is a copied, de-branded version of a client tool.** The live version
+> runs with the client, on their infrastructure, under their own keys and
+> secrets; none of those are in this repo or its history. This copy was purged
+> of company data, branding, names and brand guides (the two sample accounts
+> and their visual identities are invented), and it ships with no credentials
+> and no connection to any hosted database.
+>
+> It runs anyway: with Supabase unconfigured the app starts in **demo mode** and
+> serves the full interface against in-memory sample data, so you can clone it
+> and browse every screen with `npm install && npm run build && npm start`.
+> Supply your own Supabase project and API keys to make it real.
+>
+> Built by [Charles Luis Gaid](https://charlesluisgaid.com/).
 
 ---
 
@@ -86,6 +92,22 @@ state is signed and bound to the user id. Stored social tokens are encrypted at
 rest with AES-256-GCM. Secrets appear as env var *names* only — never in code,
 logs, or error messages. See [docs/SECURITY.md](docs/SECURITY.md).
 
+## How it's tested
+
+226 Vitest tests, organised by risk rather than by file. Services run against
+injected fakes, so the suite needs no network or database and finishes in about
+five seconds.
+
+| Area | What the tests prove |
+|---|---|
+| The publish gate (`ContentApprovalService`) | Approve, schedule, request edits, retry, repost and publish callbacks, including **bypass attempts**: a status forced to `approved` without an approval event, and a forged `content/approved` event, both refuse to publish. A double-click cannot dispatch twice. |
+| Status state machine | Every legal and illegal transition, table-driven |
+| AI output guardrails | Structured output is zod-validated with exactly one repair attempt, never a third paid call; transcripts are schema-checked; em dashes are stripped from generated copy |
+| Spend control | Per-model and per-second cost math, daily and per-user caps, credit-exhaustion alerts |
+| Idempotency | A retried render stores once and logs its cost once |
+| Webhooks | Tampered body, wrong secret, replayed signature, stale timestamp |
+| Demo mode | The stub behaves like PostgREST through the real repositories and never persists |
+
 ## Demo mode
 
 When `NEXT_PUBLIC_SUPABASE_URL` or `SUPABASE_SERVICE_ROLE_KEY` is missing, the
@@ -127,7 +149,7 @@ npm run test
 
 ## Stack
 
-Next.js 16 · React 19 · TypeScript · Tailwind v4 · Supabase (Postgres/Auth/Storage) ·
+Next.js 16 · React 19 · TypeScript · Tailwind v4 (token-driven "proofing desk" UI, self-hosted Schibsted Grotesk) · Supabase (Postgres/Auth/Storage) ·
 Inngest · Zod v4 · Vitest · Gemini (images) · Anthropic + OpenAI (text) ·
 HeyGen (avatar video) · ffmpeg · Resend/SendGrid · n8n
 

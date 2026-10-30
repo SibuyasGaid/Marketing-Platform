@@ -22,8 +22,8 @@ export function QueueCard({
       }}
       className="card-hover w-full rounded-xl border border-border-subtle bg-bg-base p-2 text-left hover:bg-bg-hover"
     >
-      <div className="flex items-center justify-between gap-1.5">
-        <span className="type-utility text-text-faint">
+      <div className="flex flex-wrap items-center justify-between gap-1">
+        <span className="type-utility whitespace-nowrap text-text-faint">
           {item.targetPlatforms.map((p) => PLATFORM_ICON[p]).join(" · ")}
         </span>
         <StatusPill status={item.status} />

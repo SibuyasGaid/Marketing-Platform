@@ -154,16 +154,16 @@ export function AppShell({
             href={item.href}
             title={working > 0 ? `${item.label} — ${working} generating` : item.label}
             onClick={() => setIsMobileNavOpen(false)}
-            className={`flex items-center gap-3 rounded-full px-3.5 py-2.5 font-display text-sm font-medium transition-colors ${
+            className={`relative flex items-center gap-3 rounded-lg px-3 py-2 font-display text-sm font-medium transition-colors ${
               isActive
-                ? "bg-primary text-text-primary"
+                ? "bg-primary/10 text-primary before:absolute before:-left-3 before:top-1.5 before:bottom-1.5 before:w-[3px] before:rounded-r before:bg-primary"
                 : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
             }`}
           >
             <span className="relative flex shrink-0">
               {item.icon}
               {working > 0 && isCollapsed ? (
-                <span className="absolute -right-1 -top-1 h-2 w-2 animate-pulse rounded-full bg-primary-bright ring-2 ring-bg-nav" />
+                <span className="absolute -right-1 -top-1 h-2 w-2 animate-pulse rounded-full bg-primary ring-2 ring-bg-nav" />
               ) : null}
             </span>
             {!isCollapsed ? (
@@ -192,13 +192,15 @@ export function AppShell({
       >
         <div className={`mb-8 flex items-center px-5 ${isCollapsed ? "justify-center px-0" : ""}`}>
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-display text-lg font-bold text-text-primary">CS</span>
+            <span
+              aria-hidden
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-text-primary font-display text-[13px] font-extrabold tracking-tight text-bg-raised"
+            >
+              CS
+            </span>
             {!isCollapsed ? (
-              <span className="leading-tight">
-                <span className="block font-display text-[11px] font-bold uppercase tracking-[0.12em] text-text-primary">
-                  Content
-                </span>
-                <span className="type-utility block text-text-faint">Studio</span>
+              <span className="font-display text-[15px] font-bold tracking-tight text-text-primary">
+                Content Studio
               </span>
             ) : null}
           </Link>
@@ -208,7 +210,7 @@ export function AppShell({
           type="button"
           onClick={() => setIsCollapsed((collapsed) => !collapsed)}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="mx-3 mt-auto flex items-center justify-center rounded-full py-2 text-text-faint hover:bg-bg-hover hover:text-text-primary"
+          className="mx-3 mt-auto flex items-center justify-center rounded-lg py-2 text-text-faint hover:bg-bg-hover hover:text-text-primary"
         >
           <svg
             viewBox="0 0 20 20"
@@ -228,10 +230,10 @@ export function AppShell({
             type="button"
             aria-label="Close navigation"
             onClick={() => setIsMobileNavOpen(false)}
-            className="absolute inset-0 bg-bg-nav/80"
+            className="absolute inset-0 bg-text-primary/30 backdrop-blur-sm"
           />
           <aside className="relative flex h-full w-[240px] flex-col border-r border-border-subtle bg-bg-nav py-5">
-            <div className="mb-8 px-5 font-display text-sm font-bold uppercase tracking-[0.12em] text-text-primary">
+            <div className="mb-8 px-5 font-display text-[15px] font-bold tracking-tight text-text-primary">
               Content Studio
             </div>
             {nav}
@@ -240,7 +242,7 @@ export function AppShell({
       ) : null}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-border-subtle bg-bg-nav px-6 py-3">
+        <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-border-subtle bg-bg-base/85 px-6 py-3 backdrop-blur-md">
           <div className="flex items-center gap-3">
             <button
               type="button"
@@ -252,7 +254,7 @@ export function AppShell({
                 <path d="M3 5.5h14M3 10h14M3 14.5h14" strokeLinecap="round" />
               </svg>
             </button>
-            <h1 className="truncate font-display text-lg font-semibold text-text-primary">
+            <h1 className="truncate font-display text-xl font-bold text-text-primary">
               {pageTitle(pathname)}
             </h1>
           </div>
@@ -268,7 +270,7 @@ export function AppShell({
             </Link>
             <Link
               href="/images"
-              className="hidden rounded-full bg-primary px-[22px] py-[10px] font-display text-sm font-medium text-text-primary shadow-glow transition-colors hover:bg-primary-bright hover:shadow-glow-hover sm:inline-flex"
+              className="hidden rounded-lg bg-primary px-[22px] py-[10px] font-display text-sm font-semibold text-on-primary shadow-glow transition-colors hover:bg-primary-bright hover:shadow-glow-hover sm:inline-flex"
             >
               Generate
             </Link>
@@ -283,7 +285,7 @@ export function AppShell({
                 {initials(profile)}
               </button>
               {isUserMenuOpen ? (
-                <div className="absolute right-0 top-11 z-40 w-56 rounded-2xl border border-border-subtle bg-bg-raised p-4">
+                <div className="absolute right-0 top-11 z-40 w-56 rounded-xl border border-border-subtle bg-bg-raised p-4 shadow-lg">
                   <p className="truncate text-sm text-text-primary">
                     {profile.displayName ?? profile.email}
                   </p>
@@ -294,7 +296,7 @@ export function AppShell({
                   <form action={signOut} className="mt-4">
                     <button
                       type="submit"
-                      className="w-full rounded-full border border-border-subtle px-3 py-2 font-display text-sm font-medium text-text-primary hover:bg-bg-hover"
+                      className="w-full rounded-lg border border-border-subtle px-3 py-2 font-display text-sm font-medium text-text-primary hover:bg-bg-hover"
                     >
                       Sign out
                     </button>
@@ -306,7 +308,7 @@ export function AppShell({
         </header>
 
         {demoMode ? (
-          <div className="border-b border-border-subtle bg-primary/10 px-6 py-2.5">
+          <div className="border-b border-primary/15 bg-primary/[0.06] px-6 py-2.5">
             <p className="text-sm text-text-secondary">
               <span className="font-semibold text-text-primary">Demo build.</span> No database is
               connected, so everything here is sample data and nothing you do is saved.

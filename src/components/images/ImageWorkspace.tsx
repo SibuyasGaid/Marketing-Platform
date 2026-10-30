@@ -256,7 +256,7 @@ export function ImageWorkspace({
                   )}
                   <span
                     className={`type-utility absolute inset-x-0 bottom-0 truncate px-1 py-0.5 ${
-                      isSelected ? "bg-primary text-text-primary" : "bg-bg-nav/80 text-text-secondary"
+                      isSelected ? "bg-primary text-on-primary" : "bg-bg-nav/80 text-text-secondary"
                     }`}
                   >
                     {avatar.personName}
@@ -311,7 +311,7 @@ export function ImageWorkspace({
                     )}
                     <span
                       className={`type-utility absolute inset-x-0 bottom-0 truncate px-1 py-0.5 ${
-                        isSelected ? "bg-primary text-text-primary" : "bg-bg-nav/80 text-text-secondary"
+                        isSelected ? "bg-primary text-on-primary" : "bg-bg-nav/80 text-text-secondary"
                       }`}
                     >
                       {ref.name}
@@ -395,7 +395,7 @@ export function ImageWorkspace({
                   onClick={() => setBrand(option.slug)}
                   className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                     brand === option.slug
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
@@ -416,7 +416,7 @@ export function ImageWorkspace({
                   aria-pressed={selectedPlatforms.has(option)}
                   className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium capitalize transition-colors ${
                     selectedPlatforms.has(option)
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
@@ -438,7 +438,7 @@ export function ImageWorkspace({
                 aria-pressed={!isCarousel}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   !isCarousel
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -450,7 +450,7 @@ export function ImageWorkspace({
                 aria-pressed={isCarousel}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   isCarousel
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -520,7 +520,7 @@ export function ImageWorkspace({
                         })
                       }
                       rows={1}
-                      placeholder="Design note (optional) — styling only, e.g. big yellow stat, speaker cutout"
+                      placeholder="Design note (optional): styling only, e.g. big stat number, person cutout"
                       className={`${inputClass} resize-y text-[13px]`}
                     />
                     <button
@@ -565,7 +565,7 @@ export function ImageWorkspace({
                     setSlides((current) => [...current, ""]);
                     setSlideDesigns((current) => [...current, ""]);
                   }}
-                  className="self-start rounded-full border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover"
+                  className="self-start rounded-lg border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover"
                 >
                   + Add slide
                 </button>
@@ -605,7 +605,7 @@ export function ImageWorkspace({
                   value={designNote}
                   onChange={(event) => setDesignNote(event.target.value)}
                   rows={2}
-                  placeholder="Styling only — e.g. big yellow stat number, speaker cutout, hexagon texture. Leave blank to follow the account design."
+                  placeholder="Styling only, e.g. big stat number, person cutout, soft texture. Leave blank to follow the account design."
                   className={`${inputClass} resize-y`}
                 />
               </label>
@@ -854,7 +854,7 @@ export function OneoffReferences({
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={isPending}
-          className="self-start rounded-full border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover disabled:opacity-50"
+          className="self-start rounded-lg border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover disabled:opacity-50"
         >
           {isPending ? "Uploading…" : `+ Attach reference (${refs.length}/4)`}
         </button>

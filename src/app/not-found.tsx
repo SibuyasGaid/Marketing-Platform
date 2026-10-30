@@ -11,7 +11,7 @@ export default function NotFound() {
         <p className="mt-1 text-sm text-text-secondary">That page doesn&apos;t exist.</p>
         <Link
           href="/images"
-          className="mt-5 inline-flex rounded-full bg-primary px-[22px] py-[10px] font-display text-sm font-medium text-text-primary shadow-glow hover:bg-primary-bright"
+          className="mt-5 inline-flex rounded-lg bg-primary px-[22px] py-[10px] font-display text-sm font-semibold text-on-primary shadow-glow hover:bg-primary-bright"
         >
           Back to the app
         </Link>

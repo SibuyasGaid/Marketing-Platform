@@ -146,7 +146,7 @@ export function ClipStudio({
                 onClick={() => setBrand(account.slug)}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   brand === account.slug
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -167,7 +167,7 @@ export function ClipStudio({
                 aria-pressed={platforms.has(option.key)}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   platforms.has(option.key)
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -255,7 +255,7 @@ export function ClipStudio({
         <button
           type="button"
           onClick={() => setSections((cur) => [...cur, emptySection()])}
-          className="rounded-full border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover"
+          className="rounded-lg border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover"
         >
           + Add another clip
         </button>

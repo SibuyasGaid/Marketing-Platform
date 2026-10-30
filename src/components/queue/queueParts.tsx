@@ -100,7 +100,7 @@ export function SegmentVideo({ url }: { url: string; startS?: number | null; end
               href={url}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-primary px-4 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-primary-bright"
+              className="rounded-lg bg-primary px-4 py-1.5 font-display text-[13px] font-semibold text-on-primary hover:bg-primary-bright"
             >
               Open / download
             </a>

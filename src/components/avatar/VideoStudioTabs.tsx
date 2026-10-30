@@ -111,7 +111,7 @@ function TabButton({
       aria-pressed={active}
       className={`inline-flex items-center rounded-full px-4 py-1.5 font-display text-[13px] font-medium transition-colors ${
         active
-          ? "bg-primary text-text-primary"
+          ? "bg-primary text-on-primary"
           : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
       }`}
     >

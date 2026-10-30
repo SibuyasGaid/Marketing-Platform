@@ -64,7 +64,7 @@ export function OutroControl({
           <button
             type="button"
             onClick={start}
-            className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 font-display text-[13px] font-medium text-primary-soft transition-colors hover:bg-primary/20 hover:text-primary-bright"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-primary/50 bg-primary/10 px-3 py-1.5 font-display text-[13px] font-medium text-primary-soft transition-colors hover:bg-primary/20 hover:text-primary-bright"
           >
             Add outro
           </button>

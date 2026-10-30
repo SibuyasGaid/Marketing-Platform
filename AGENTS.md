@@ -2,7 +2,7 @@
 
 Content Studio — an AI content generation and social publishing platform. Next.js (App Router) on Vercel, Supabase (Postgres/Auth/Storage), Inngest for background jobs, Gemini for images, Anthropic/OpenAI for text, HeyGen for avatar video, Resend/SendGrid for email, n8n for social publishing.
 
-Overview: `README.md`. Full spec: `PROJECT_PROMPT.md`. Standards (read before coding): `docs/CODING_STANDARDS.md`, `docs/SECURITY.md`, `docs/API_OPTIMIZATION.md`. **All UI is built per `docs/DESIGN.md`** — dark violet-on-indigo token system, do not deviate; no hardcoded hex in components (tokens live in `globals.css` + Tailwind theme; the one status pill is `components/ui/StatusPill.tsx` driven by `statusStyles.ts`; the one button is `components/ui/Button.tsx`).
+Overview: `README.md`. Full spec: `PROJECT_PROMPT.md`. Standards (read before coding): `docs/CODING_STANDARDS.md`, `docs/SECURITY.md`, `docs/API_OPTIMIZATION.md`. **All UI is built per `docs/DESIGN.md`**: light "proofing desk" token system (paper canvas, white surfaces, one cobalt accent, Schibsted Grotesk self-hosted), do not deviate; text on a solid `bg-primary` uses `text-on-primary`; no hardcoded hex in components (tokens live in `globals.css` + Tailwind theme; the one status pill is `components/ui/StatusPill.tsx` driven by `statusStyles.ts`; the one button is `components/ui/Button.tsx`).
 
 ## Commands
 

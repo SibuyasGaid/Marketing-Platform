@@ -108,7 +108,7 @@ export function RepostControl({
                   aria-pressed={on}
                   className={`rounded-full px-3 py-1.5 font-display text-[13px] font-medium capitalize transition-colors ${
                     on
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
@@ -189,7 +189,7 @@ export function DestinationsControl({
                   aria-pressed={on}
                   className={`rounded-full px-3 py-1.5 font-display text-[13px] font-medium capitalize transition-colors ${
                     on
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >

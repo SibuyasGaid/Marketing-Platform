@@ -327,7 +327,7 @@ export function ItemDrawer({
                         aria-pressed={approveMode === "now"}
                         className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                           approveMode === "now"
-                            ? "bg-primary text-text-primary"
+                            ? "bg-primary text-on-primary"
                             : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                         }`}
                       >
@@ -339,7 +339,7 @@ export function ItemDrawer({
                         aria-pressed={approveMode === "schedule"}
                         className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                           approveMode === "schedule"
-                            ? "bg-primary text-text-primary"
+                            ? "bg-primary text-on-primary"
                             : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                         }`}
                       >

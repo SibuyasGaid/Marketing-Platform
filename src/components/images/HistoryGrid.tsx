@@ -310,7 +310,7 @@ function HistoryCard({ item, canManage }: { item: HistoryItemView; canManage: bo
             type="button"
             onClick={() => setOpenPanel((panel) => (panel === "edit" ? "none" : "edit"))}
             disabled={isBusy}
-            className="rounded-full border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-base disabled:opacity-50"
+            className="rounded-lg border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-base disabled:opacity-50"
           >
             Edit
           </button>
@@ -320,7 +320,7 @@ function HistoryCard({ item, canManage }: { item: HistoryItemView; canManage: bo
             type="button"
             onClick={() => setIsRegionOpen(true)}
             disabled={isBusy}
-            className="rounded-full border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-base disabled:opacity-50"
+            className="rounded-lg border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-base disabled:opacity-50"
           >
             Edit region
           </button>
@@ -329,7 +329,7 @@ function HistoryCard({ item, canManage }: { item: HistoryItemView; canManage: bo
           type="button"
           onClick={() => setOpenPanel((panel) => (panel === "regen" ? "none" : "regen"))}
           disabled={isBusy}
-          className="rounded-full border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-base disabled:opacity-50"
+          className="rounded-lg border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-base disabled:opacity-50"
         >
           Regenerate
         </button>
@@ -475,7 +475,7 @@ function HistoryCard({ item, canManage }: { item: HistoryItemView; canManage: bo
                       aria-pressed={selected}
                       className={`h-8 w-8 rounded-lg text-[13px] font-medium transition-colors ${
                         selected
-                          ? "bg-primary text-text-primary"
+                          ? "bg-primary text-on-primary"
                           : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                       }`}
                     >

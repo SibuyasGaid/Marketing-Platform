@@ -169,7 +169,7 @@ export function ProviderAlertModal({ alerts }: { alerts: ProviderAlertView[] }) 
               <Link
                 href="/admin"
                 onClick={dismiss}
-                className="inline-flex items-center rounded-full bg-primary px-[22px] py-[10px] font-display text-sm font-medium text-text-primary shadow-glow transition-colors hover:bg-primary-bright"
+                className="inline-flex items-center rounded-lg bg-primary px-[22px] py-[10px] font-display text-sm font-semibold text-on-primary shadow-glow transition-colors hover:bg-primary-bright"
               >
                 Go to Admin
               </Link>

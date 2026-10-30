@@ -94,7 +94,7 @@ export function CaptionsControl({
                   <button
                     type="submit"
                     disabled={isSwitching}
-                    className="rounded-full border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary transition-colors hover:bg-bg-hover disabled:opacity-50"
+                    className="rounded-lg border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-primary transition-colors hover:bg-bg-hover disabled:opacity-50"
                   >
                     {isSwitching
                       ? "Switching…"
@@ -107,7 +107,7 @@ export function CaptionsControl({
               <button
                 type="button"
                 onClick={startCaptions}
-                className="rounded-full border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-secondary transition-colors hover:bg-bg-hover"
+                className="rounded-lg border border-border-subtle px-3 py-1.5 font-display text-[13px] font-medium text-text-secondary transition-colors hover:bg-bg-hover"
               >
                 Regenerate captions
               </button>
@@ -123,7 +123,7 @@ export function CaptionsControl({
           <button
             type="button"
             onClick={startCaptions}
-            className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 font-display text-[13px] font-medium text-primary-soft transition-colors hover:bg-primary/20 hover:text-primary-bright"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-primary/50 bg-primary/10 px-3 py-1.5 font-display text-[13px] font-medium text-primary-soft transition-colors hover:bg-primary/20 hover:text-primary-bright"
           >
             Generate captions
           </button>
@@ -171,7 +171,7 @@ export function CaptionSection({
               setDraft(caption ?? "");
               setIsEditing(true);
             }}
-            className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/10 px-3 py-1.5 font-display text-[13px] font-medium text-primary-soft transition-colors hover:bg-primary/20 hover:text-primary-bright"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-primary/50 bg-primary/10 px-3 py-1.5 font-display text-[13px] font-medium text-primary-soft transition-colors hover:bg-primary/20 hover:text-primary-bright"
           >
             <PencilIcon />
             Edit caption

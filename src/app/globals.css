@@ -1,33 +1,39 @@
 @import "tailwindcss";
 
-/* Design tokens — source of truth is docs/DESIGN.md §2. Components consume
+/* Design tokens. Source of truth is docs/DESIGN.md §2. Components consume
    these via Tailwind classes only; hardcoded hex in a component file is a
-   review failure. */
+   review failure.
+
+   Concept: a proofing desk. Grey paper canvas, white working surfaces,
+   near-black ink, and one cobalt "blue pencil" accent reserved for primary
+   actions and the review flow. */
 :root {
-  --bg-base: #120a2a;
-  --bg-nav: #0d0722;
-  --bg-raised: #1b1140;
-  --bg-hover: #241755;
+  --bg-base: #f1f2f4;
+  --bg-nav: #f8f8fa;
+  --bg-raised: #ffffff;
+  --bg-hover: #e9ebf0;
 
-  --primary: #7c3aed;
-  --primary-bright: #8b5cf6;
-  --primary-soft: #a78bfa;
-  --gradient-brand: linear-gradient(92deg, #7c3aed 0%, #b794f6 100%);
+  --primary: #2b47e8;
+  --primary-bright: #1f37c4;
+  --primary-soft: #3550e6;
+  --on-primary: #ffffff;
+  --gradient-brand: linear-gradient(92deg, #2b47e8 0%, #2b47e8 100%);
 
-  --text-primary: #f5f3ff;
-  --text-secondary: #a79fc4;
-  --text-faint: #6e668f;
+  --text-primary: #14161b;
+  --text-secondary: #4b5261;
+  --text-faint: #6f7685;
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(167, 139, 250, 0.35);
+  --border-subtle: rgba(20, 22, 27, 0.09);
+  --border-strong: rgba(43, 71, 232, 0.45);
 
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --info: #60a5fa;
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #d92d20;
+  --info: #1d63d8;
 
-  --glow-primary: 0 0 24px rgba(124, 58, 237, 0.45);
-  --glow-primary-hover: 0 0 32px rgba(124, 58, 237, 0.6);
+  --glow-primary: 0 1px 2px rgba(20, 22, 27, 0.1), 0 6px 16px -6px rgba(43, 71, 232, 0.55);
+  --glow-primary-hover: 0 1px 2px rgba(20, 22, 27, 0.12), 0 10px 22px -8px rgba(43, 71, 232, 0.65);
+  --shadow-surface: 0 1px 2px rgba(20, 22, 27, 0.05), 0 4px 14px -6px rgba(20, 22, 27, 0.08);
 }
 
 @theme inline {
@@ -39,6 +45,7 @@
   --color-primary: var(--primary);
   --color-primary-bright: var(--primary-bright);
   --color-primary-soft: var(--primary-soft);
+  --color-on-primary: var(--on-primary);
 
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
@@ -52,26 +59,35 @@
   --color-danger: var(--danger);
   --color-info: var(--info);
 
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-poppins);
+  --font-sans: var(--font-schibsted);
+  --font-display: var(--font-schibsted);
 
   --shadow-glow: var(--glow-primary);
   --shadow-glow-hover: var(--glow-primary-hover);
+  --shadow-surface: var(--shadow-surface);
 }
 
 body {
   background-color: var(--bg-base);
   color: var(--text-secondary);
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
 }
 
-/* Faint marketing-site grid — on --bg-base surfaces only, never on cards. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.015em;
+}
+
+/* Working surfaces sit on the canvas like sheets on a desk. */
+.bg-bg-raised {
+  box-shadow: var(--shadow-surface);
+}
+
+/* The main canvas. Plain paper: no texture, so thumbnails carry the color. */
 .bg-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-image: none;
 }
 
 /* Card hover: background shift + 1px lift (docs/DESIGN.md §4). Pure CSS so it
@@ -86,12 +102,10 @@ body {
   transform: translateY(-1px);
 }
 
-/* Gradient text — at most one word in a page title (docs/DESIGN.md §2). */
+/* Retired accent-word treatment: kept as a class so existing titles render
+   as plain ink instead of breaking. */
 .text-gradient-brand {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text-primary);
 }
 
 /* Visible focus ring on every interactive element (docs/DESIGN.md §5). */
@@ -100,12 +114,11 @@ body {
   outline-offset: 2px;
 }
 
-/* Utility type for badges/eyebrows: 11px uppercase, tracked. */
+/* Utility type for badges and metadata: small, medium weight, sentence case. */
 .type-utility {
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 550;
+  letter-spacing: 0.005em;
 }
 
 @keyframes pulse-dot {

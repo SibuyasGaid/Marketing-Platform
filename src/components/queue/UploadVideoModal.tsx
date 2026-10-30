@@ -170,7 +170,7 @@ export function UploadVideoModal({
                   onClick={() => setBrand(account.slug)}
                   className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                     brand === account.slug
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
@@ -191,7 +191,7 @@ export function UploadVideoModal({
                   aria-pressed={platforms.has(platform)}
                   className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium capitalize transition-colors ${
                     platforms.has(platform)
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
