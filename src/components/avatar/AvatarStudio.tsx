@@ -25,6 +25,8 @@ const AVATAR_PLATFORMS = [
 ] as const;
 
 const initialState: ActionState = { error: null };
+// Seed value for the background color picker, not a UI color (the picker's own value).
+const DEFAULT_BACKGROUND_COLOR = "#0B2A4A";
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-bg-base px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-border-strong";
 
@@ -43,7 +45,7 @@ export function AvatarStudio({
   const [avatarId, setAvatarId] = useState("");
   const [platforms, setPlatforms] = useState<Set<string>>(new Set(["instagram"]));
   const [bgMode, setBgMode] = useState<"original" | "color" | "image">("original");
-  const [backgroundColor, setBackgroundColor] = useState("#1A0F3A");
+  const [backgroundColor, setBackgroundColor] = useState(DEFAULT_BACKGROUND_COLOR);
   const [bgImage, setBgImage] = useState<{ path: string; previewUrl: string } | null>(null);
   const [bgUploading, startBgUpload] = useTransition();
   const [bgError, setBgError] = useState<string | null>(null);

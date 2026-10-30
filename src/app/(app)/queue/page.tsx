@@ -1,5 +1,6 @@
 import { CalendarPanel, type CalendarEntryView } from "@/components/queue/CalendarPanel";
-import { QueueBoard, type QueueItemView } from "@/components/queue/QueueBoard";
+import { QueueBoard } from "@/components/queue/QueueBoard";
+import type { QueueItemView } from "@/components/queue/queueTypes";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { BRAND_NAMES, PLATFORMS, type Platform } from "@/lib/domain";
 import { createSupabaseServerClient } from "@/lib/supabase/server";

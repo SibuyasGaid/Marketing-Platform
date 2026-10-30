@@ -14,6 +14,9 @@ import { Button } from "@/components/ui/Button";
  */
 const MAX_DISPLAY = 460;
 const MAX_EXPORT = 1024;
+// Mask encoding, not UI colors: the edit API reads white as "change" and black as "keep".
+const MASK_PAINT = "#ffffff";
+const MASK_KEEP = "#000000";
 
 export function RegionEditModal({
   itemId,
@@ -66,7 +69,7 @@ export function RegionEditModal({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const { x, y } = pointerPos(event);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = MASK_PAINT;
     ctx.beginPath();
     ctx.arc(x, y, brush / 2, 0, Math.PI * 2);
     ctx.fill();
@@ -90,7 +93,7 @@ export function RegionEditModal({
     const ctx = out.getContext("2d");
     if (!ctx) return null;
     // White strokes on a black background = the mask.
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = MASK_KEEP;
     ctx.fillRect(0, 0, out.width, out.height);
     ctx.drawImage(canvas, 0, 0, out.width, out.height);
     return out.toDataURL("image/png").split(",")[1] ?? null;
