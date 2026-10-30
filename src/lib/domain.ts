@@ -39,30 +39,30 @@ export interface BrandStyleGuide {
 }
 
 export const BRAND_STYLE_GUIDES: Record<Brand, BrandStyleGuide> = {
-  // Demo Brand — a violet-on-indigo sample identity. Two sample accounts ship
+  // Demo Brand: an invented aqua-on-ocean sample identity. Two sample accounts ship
   // with the app purely to show what a filled-in style guide looks like; real
   // accounts are created in the UI and stored in the `accounts` table.
   demo_brand: {
     palette:
-      "Deep indigo to near-black backgrounds (base #1A0F3A) with a soft violet gradient glow toward a corner or the lower area. Vivid violet #892BE2 for accent shapes, glows, and highlight blocks. Golden yellow #FFD600 reserved for highlighted keywords, large numbers, and small callouts. Primary headline text is white; a few key words are emphasized in yellow or sit inside a solid violet or yellow highlight box. High contrast throughout.",
+      "Deep ocean-blue backgrounds (base #0B2A4A) with a soft aqua gradient glow toward one corner. Bright aqua #2EC4B6 for accent shapes, glows, and highlight blocks. Coral #FF6B57 reserved for highlighted keywords, large numbers, and small callouts. Primary headline text is white; a few key words are emphasized in coral or sit inside a solid aqua or coral highlight box. High contrast throughout.",
     typography:
-      "When the image contains text, set headlines in a bold, heavy geometric sans-serif in the style of Poppins, tightly set and punchy, and emphasize a few key words by coloring them yellow or wrapping them in a solid violet or yellow marker-style highlight box. Body and captions use a clean sans-serif in the style of Open Sans at a lighter weight.",
+      "When the image contains text, set headlines in a heavy, wide grotesque sans-serif in the style of Archivo Black, tightly set and punchy, and emphasize a few key words by coloring them coral or wrapping them in a solid aqua or coral marker-style highlight box. Body and captions use a clean sans-serif in the style of Inter at a lighter weight.",
     artDirection:
-      "Premium, modern, confident, and high energy. Dark, immersive violet-on-indigo backgrounds with glowing violet accents and punchy golden highlights, consistent enough that every image looks like it belongs in the same Instagram feed.",
+      "Fresh, modern, confident, and high energy. Deep ocean-blue backgrounds with glowing aqua accents and punchy coral highlights, consistent enough that every image looks like it belongs in the same Instagram feed.",
     layout:
-      "Portrait 4:5 framing. Dark gradient background, often with a subtle tech texture such as a fine hexagon mesh, faint circuit lines, soft bokeh dots, or abstract 3D shapes (for example dollar signs for money topics). Common compositions: (1) a testimonial or quote card with a large decorative violet or yellow quotation mark and the person's name and role beneath; (2) a professional person photographed on a dark background with violet rim lighting, cut out and placed to one side with a bold headline on the other; (3) a single large statistic or number in bold yellow or white with a short supporting line. Use rounded corners, pill-shaped buttons and badges, keep a clean area near the top for a small logo lockup, and leave generous spacing.",
+      "Portrait 4:5 framing. Deep blue gradient background, often with a subtle texture such as soft wave lines, fine dot grids, or abstract 3D shapes tied to the topic. Common compositions: (1) a testimonial or quote card with a large decorative aqua or coral quotation mark and the person's name and role beneath; (2) a person photographed on a dark background with aqua rim lighting, cut out and placed to one side with a bold headline on the other; (3) a single large statistic or number in bold coral or white with a short supporting line. Use rounded corners, pill-shaped buttons and badges, keep a clean area near the top for a small logo lockup, and leave generous spacing.",
   },
-  // Sample Co — a deliberately different gold-on-navy sample identity, so the
+  // Sample Co: a deliberately different light, editorial sample identity, so the
   // per-account prompt injection is visibly distinguishable from Demo Brand.
   sample_co: {
     palette:
-      "Very dark, near-black navy backgrounds (approximately #0A0E1A), mostly flat with little or no gradient. Warm gold/amber (approximately #F5C24A) is the primary accent, used for big numbers, a few highlighted keywords, and small uppercase section labels. Indigo-violet (approximately #6C5CE7) is the secondary accent, used for pill badges, swipe prompts, and call-to-action buttons. Headlines and most body text are white. High contrast and restrained, with gold as the dominant accent.",
+      "Light, warm bone-white backgrounds (approximately #F4F1EC), mostly flat with no gradient. Near-black ink (approximately #161616) for headlines and body text. Signal orange (approximately #FF5A1F) is the single accent, used for big numbers, a few highlighted keywords, small uppercase section labels, and call-to-action buttons. High contrast and restrained, with orange used sparingly.",
     typography:
-      "When the image contains text, set headlines in a very large, heavy, clean sans-serif in the style of Poppins or Helvetica, white and tightly set. Emphasize a few key words by coloring them gold (colored text, not highlight boxes). Use small uppercase gold labels with wide letter-spacing for section tags (for example REVENUE AUDIT, FREE, 40 AUDITS ONE PATTERN). Supporting lines are smaller, often italic, in white or light gray.",
+      "When the image contains text, set headlines in a very large, condensed bold sans-serif in the style of Oswald, near-black and tightly set. Emphasize a few key words by coloring them orange (colored text, not highlight boxes). Use small uppercase orange labels with wide letter-spacing for section tags (for example CASE STUDY, FIELD NOTES, 3 LESSONS). Supporting lines are smaller, in a clean sans-serif in the style of IBM Plex Sans, in dark gray.",
     artDirection:
-      "Clean, minimal, premium, and data-driven, with generous negative space and a quiet, confident tone. Darker and flatter than a gradient-heavy look: near-black navy with gold as the hero accent and indigo-violet as a secondary accent. Every image should feel restrained and editorial, like it belongs in the same feed.",
+      "Clean, minimal, editorial, and data-driven, with generous negative space and a quiet, confident tone. A light print-magazine look: bone-white paper, near-black ink, and signal orange as the only accent. Every image should feel restrained and editorial, like it belongs in the same feed.",
     layout:
-      "Portrait 4:5 framing on a flat near-black navy background with generous negative space. Common compositions: (1) a small gold uppercase label in the top-left (sometimes a second gold label top-right), a very large white headline or a big gold statistic as the focal point, and a short supporting line beneath; (2) structured data rows such as DURATION / COST / OUTCOME with gold values; (3) a professional person photographed on a dark background, naturally lit, with a bold white headline; (4) sequence pill badges in violet and gold (for example 1ST REPLY, 2ND REPLY, 3RD REPLY). Include a violet swipe prompt or a violet call-to-action button where relevant, keep a clean area for the account's logo lockup, and favor minimalism over decoration.",
+      "Portrait 4:5 framing on a flat bone-white background with generous negative space. Common compositions: (1) a small orange uppercase label in the top-left, a very large near-black headline or a big orange statistic as the focal point, and a short supporting line beneath; (2) structured data rows such as TIME / COST / RESULT with orange values; (3) a person photographed in natural light against a plain wall, with a bold headline; (4) numbered steps in thin-outlined boxes (for example STEP 1, STEP 2, STEP 3). Include an orange call-to-action button where relevant, keep a clean area for the account's logo lockup, and favor minimalism over decoration.",
   },
 };
 
