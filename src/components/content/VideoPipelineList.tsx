@@ -260,7 +260,7 @@ function SegmentSelector({ video, accounts }: { video: VideoView; accounts: Acco
             onClick={() => setBrand(option.slug)}
             className={`rounded-full px-3 py-1 font-display text-[13px] font-medium transition-colors ${
               brand === option.slug
-                ? "bg-primary text-text-primary"
+                ? "bg-primary text-on-primary"
                 : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
             }`}
           >
@@ -308,7 +308,7 @@ function SegmentSelector({ video, accounts }: { video: VideoView; accounts: Acco
               onClick={() => toggle(selectedPlatforms, platform, setSelectedPlatforms)}
               className={`rounded-full px-3 py-1 font-display text-[13px] font-medium capitalize transition-colors ${
                 selectedPlatforms.has(platform)
-                  ? "bg-primary text-text-primary"
+                  ? "bg-primary text-on-primary"
                   : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
               }`}
             >

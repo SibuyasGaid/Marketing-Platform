@@ -38,14 +38,14 @@ insert into public.accounts (slug, name, description, visual_identity) values
   (
     'demo_brand',
     'Demo Brand',
-    'Demo Brand is a sample account showing how an account profile steers generation. Voice: confident, practical, premium, and encouraging. Themes: real implementation over theory, customer results, recurring revenue.',
-    'Deep indigo to near-black backgrounds (base #1A0F3A) with a soft violet gradient glow. Vivid violet #892BE2 for accent shapes and highlight blocks. Golden yellow #FFD600 for highlighted keywords, large numbers, and small callouts. White headlines with a few key words in yellow or inside a solid violet or yellow highlight box. Bold Poppins-style headlines, Open Sans-style body. Portrait 4:5. Recurring motifs: large decorative quotation marks for testimonials, speaker cutouts with violet rim lighting, big yellow stat numbers, hexagon/tech textures, pill badges. Premium, modern, high energy.'
+    'Demo Brand is a sample account showing how an account profile steers generation. Voice: confident, practical, premium, and encouraging. Themes: practical how-tos, customer results, behind the scenes.',
+    'Deep ocean-blue backgrounds (base #0B2A4A) with a soft aqua gradient glow. Bright aqua #2EC4B6 for accent shapes and highlight blocks. Coral #FF6B57 for highlighted keywords, large numbers, and small callouts. White headlines with a few key words in coral or inside a solid aqua or coral highlight box. Heavy Archivo Black-style headlines, Inter-style body. Portrait 4:5. Recurring motifs: large decorative quotation marks for testimonials, people cutouts with aqua rim lighting, big coral stat numbers, soft wave textures, pill badges. Fresh, modern, high energy.'
   ),
   (
     'sample_co',
     'Sample Co',
     'Sample Co is a second sample account with a deliberately different look, so the per-account prompt injection is easy to see side by side. Voice: clean, direct, data-driven; quiet confidence, outcomes over hype.',
-    'Flat near-black navy backgrounds (approximately #0A0E1A) with generous negative space. Warm gold/amber (approximately #F5C24A) as the hero accent for big numbers, uppercase section labels, and a few keywords. Indigo-violet (approximately #6C5CE7) as the secondary accent for pill badges, swipe prompts, and CTA buttons. Huge white headlines with select words colored gold. Small uppercase gold labels, italic supporting lines, structured data rows. Portrait 4:5, minimal, editorial, premium.'
+    'Flat bone-white backgrounds (approximately #F4F1EC) with generous negative space. Near-black ink (approximately #161616) for type. Signal orange (approximately #FF5A1F) as the only accent, for big numbers, uppercase section labels, a few keywords, and CTA buttons. Huge condensed headlines with select words colored orange. Small uppercase orange labels, structured data rows, numbered steps. Portrait 4:5, minimal, editorial.'
   )
 on conflict (slug) do nothing;
 

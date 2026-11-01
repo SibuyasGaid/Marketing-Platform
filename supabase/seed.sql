@@ -34,8 +34,8 @@ begin
   values (
     'DEMO — Sample brand preset',
     'confident, premium, direct',
-    '["#7C3AED", "#120A2A", "#A78BFA"]'::jsonb,
-    'Bold geometric shapes, dark violet backgrounds, high contrast headline text.',
+    '["#2EC4B6", "#0B2A4A", "#FF6B57"]'::jsonb,
+    'Bold geometric shapes, deep ocean-blue backgrounds, high contrast headline text.',
     'Q1 product launch push',
     demo_admin
   ) returning id into demo_preset;

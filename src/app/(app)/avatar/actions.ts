@@ -68,7 +68,7 @@ const RequestSchema = z.object({
   caption: z.string().max(4000).optional(),
   // Optional solid background color (hex). Blank = HeyGen default.
   backgroundColor: z
-    .union([z.string().regex(/^#[0-9a-fA-F]{6}$/, "Use a hex color like #1A0F3A."), z.literal("")])
+    .union([z.string().regex(/^#[0-9a-fA-F]{6}$/, "Use a hex color like #0B2A4A."), z.literal("")])
     .optional(),
   // Optional uploaded background image (one-off storage path). Wins over color.
   backgroundImagePath: z.union([z.string().max(200), z.literal("")]).optional(),

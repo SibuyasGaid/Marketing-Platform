@@ -10,7 +10,7 @@ export function StatusPill({ status }: { status: ContentStatus }) {
 
   return (
     <span
-      className={`type-utility inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 ${style.pillClass}`}
+      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-[3px] text-[11px] font-semibold leading-4 ${style.pillClass}`}
     >
       {style.dot === "pulse" ? (
         <span aria-hidden className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-current" />

@@ -130,7 +130,7 @@ export default async function AdminPage() {
                     <input type="hidden" name="alertId" value={alert.id} />
                     <button
                       type="submit"
-                      className="rounded-full border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover"
+                      className="rounded-lg border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover"
                     >
                       Mark resolved
                     </button>

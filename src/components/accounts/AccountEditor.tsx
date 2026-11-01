@@ -195,7 +195,7 @@ export function AccountEditor({
                   <SubmitText
                     spinner
                     pendingLabel="Connecting…"
-                    className="shrink-0 rounded-full bg-primary px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-primary-bright"
+                    className="shrink-0 rounded-lg bg-primary px-3.5 py-1.5 font-display text-[13px] font-semibold text-on-primary hover:bg-primary-bright"
                   >
                     Use this Page
                   </SubmitText>
@@ -241,7 +241,7 @@ export function AccountEditor({
               <div className="flex items-center gap-2">
                 <a
                   href={`/api/oauth/meta/start?account=${slug}`}
-                  className="rounded-full bg-primary px-[18px] py-[9px] font-display text-[13px] font-medium text-text-primary shadow-glow transition-colors hover:bg-primary-bright"
+                  className="rounded-lg bg-primary px-[18px] py-[9px] font-display text-[13px] font-semibold text-on-primary shadow-glow transition-colors hover:bg-primary-bright"
                 >
                   {connections.facebookName ? "Reconnect" : "Connect"}
                 </a>
@@ -274,7 +274,7 @@ export function AccountEditor({
               <div className="flex items-center gap-2">
                 <a
                   href={`/api/oauth/linkedin/start?account=${slug}`}
-                  className="rounded-full bg-primary px-[18px] py-[9px] font-display text-[13px] font-medium text-text-primary shadow-glow transition-colors hover:bg-primary-bright"
+                  className="rounded-lg bg-primary px-[18px] py-[9px] font-display text-[13px] font-semibold text-on-primary shadow-glow transition-colors hover:bg-primary-bright"
                 >
                   {connections.linkedinName ? "Reconnect" : "Connect"}
                 </a>
@@ -307,7 +307,7 @@ export function AccountEditor({
               <div className="flex items-center gap-2">
                 <a
                   href={`/api/oauth/youtube/start?account=${slug}`}
-                  className="rounded-full bg-primary px-[18px] py-[9px] font-display text-[13px] font-medium text-text-primary shadow-glow transition-colors hover:bg-primary-bright"
+                  className="rounded-lg bg-primary px-[18px] py-[9px] font-display text-[13px] font-semibold text-on-primary shadow-glow transition-colors hover:bg-primary-bright"
                 >
                   {connections.youtubeName ? "Reconnect" : "Connect"}
                 </a>
@@ -357,7 +357,7 @@ export function AccountEditor({
                 </span>
               )}
               {reference.isLogo ? (
-                <span className="absolute left-1 top-1 rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium text-text-primary">
+                <span className="absolute left-1 top-1 rounded-lg bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-on-primary">
                   Logo
                 </span>
               ) : null}

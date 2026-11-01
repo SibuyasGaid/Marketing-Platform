@@ -6,56 +6,59 @@
 
 ## 1. Design intent
 
-This internal platform is styled to feel like a native extension of a dark, premium marketing site — the team should feel zero brand whiplash moving between them. That reference aesthetic is violet-on-indigo with bold geometric display type, pill-shaped glowing CTAs, and a faint background grid. The internal app translates that into a **calm, dense, dark dashboard**: same palette and type voice, but quieter — the marketing site sells, the app works. Spend the visual energy in exactly two places: the primary action buttons and the content status system. Everything else stays disciplined.
+Content Studio is a **proofing desk**. Reviewers spend their day looking at other people's visuals (generated images, clips, avatar videos) and deciding whether they ship. The interface should stay out of the way of that work: a light paper-grey canvas, white working surfaces, near-black ink, and exactly one accent, a cobalt "blue pencil" (the colour editors mark proofs with), reserved for the actions that move work forward.
 
-## 2. Design tokens (source of truth — implement as CSS variables + Tailwind theme)
+Spend the visual energy in two places only: the primary action on each screen, and the content status system. Everything else stays quiet so the thumbnails carry the colour.
+
+## 2. Design tokens (source of truth: CSS variables + Tailwind theme)
 
 ### Color
 
 | Token | Value | Use |
 |---|---|---|
-| `--bg-base` | `#120A2A` | App background (deep indigo-black) |
-| `--bg-nav` | `#0D0722` | Top nav / sidebar |
-| `--bg-raised` | `#1B1140` | Cards, panels, modals |
-| `--bg-hover` | `#241755` | Hover state on raised surfaces |
-| `--primary` | `#7C3AED` | Primary actions, active nav |
-| `--primary-bright` | `#8B5CF6` | Hover on primary, links |
-| `--primary-soft` | `#A78BFA` | Secondary emphasis, icons |
-| `--gradient-brand` | `linear-gradient(92deg, #7C3AED 0%, #B794F6 100%)` | Gradient text accents, hero headings only |
-| `--text-primary` | `#F5F3FF` | Headings, primary text |
-| `--text-secondary` | `#A79FC4` | Body, descriptions, muted lavender-gray |
-| `--text-faint` | `#6E668F` | Timestamps, tertiary metadata |
-| `--border-subtle` | `rgba(255,255,255,0.08)` | Card borders, dividers |
-| `--border-strong` | `rgba(167,139,250,0.35)` | Focused/active borders |
-| `--success` | `#4ADE80` | Posted, live indicators |
-| `--warning` | `#FBBF24` | Pending approval, edits requested |
-| `--danger` | `#F87171` | Failed, destructive actions |
-| `--info` | `#60A5FA` | Publishing/in-progress |
+| `--bg-base` | `#F1F2F4` | App canvas (paper grey) |
+| `--bg-nav` | `#F8F8FA` | Sidebar |
+| `--bg-raised` | `#FFFFFF` | Cards, panels, modals, drawers (gets `--shadow-surface`) |
+| `--bg-hover` | `#E9EBF0` | Hover on surfaces |
+| `--primary` | `#2B47E8` | Primary actions, active nav, selected chips |
+| `--primary-bright` | `#1F37C4` | Hover/pressed primary (darker, not lighter) |
+| `--primary-soft` | `#3550E6` | Links, ghost actions, secondary emphasis |
+| `--on-primary` | `#FFFFFF` | Text and icons on a solid `--primary` fill. Never `--text-primary` there |
+| `--text-primary` | `#14161B` | Headings, primary text |
+| `--text-secondary` | `#4B5261` | Body, descriptions |
+| `--text-faint` | `#6F7685` | Timestamps, tertiary metadata (AA at 12px+ on white) |
+| `--border-subtle` | `rgba(20,22,27,0.09)` | Card borders, dividers |
+| `--border-strong` | `rgba(43,71,232,0.45)` | Focused/active borders |
+| `--success` | `#15803D` | Posted, live indicators |
+| `--warning` | `#B45309` | Pending approval, edits requested |
+| `--danger` | `#D92D20` | Failed, destructive actions |
+| `--info` | `#1D63D8` | Scheduled, publishing, in-progress |
 
-Background texture: the marketing site's faint grid — reproduce as a subtle CSS background (1px lines at `rgba(255,255,255,0.025)`, ~64px cells) on `--bg-base` only. Never on cards.
+No background texture: the canvas is plain so thumbnails carry the colour.
 
-Glow: primary buttons get `box-shadow: 0 0 24px rgba(124,58,237,0.45)`; intensify slightly on hover. No glow anywhere else.
+Shadows: `--shadow-surface` (soft, two-layer) on raised surfaces; `--glow-primary` (a cobalt-tinted drop shadow) on primary buttons only, slightly stronger on hover.
 
 ### Typography
 
-- **Display / headings:** Poppins (600, 700) — matches the site's bold geometric headline voice. Page titles ~28px/700, section titles 20px/600, card titles 16px/600.
-- **Body / UI:** Inter (400, 500) — 14px base for dashboard density, 13px for table/metadata rows, `--text-secondary` by default.
-- **Utility (badges, eyebrows):** Inter 11–12px, 500, uppercase, `letter-spacing: 0.08em` — mirrors the site's "NOW ENROLLING" chip style.
-- Gradient text (`--gradient-brand` with `background-clip: text`) is reserved for at most one word in a page's title. Never on body text or labels.
-- Load both fonts via `next/font/google` with `display: swap`.
+- **One family: Schibsted Grotesk** (variable, 400 to 900), self-hosted from `src/assets/fonts` via `next/font/local` so builds never depend on Google Fonts. It's a newsroom grotesque: compact, sturdy at small sizes, with enough character in bold for page titles.
+- Page titles 20px/700, section titles 16 to 18px/600, body 14px/400, metadata 12 to 13px.
+- Headings get `-0.015em` tracking.
+- Utility text (badges, metadata) is 12px/550 in **sentence case**. No all-caps labels or tracked-out eyebrows.
+- Status pills are 11px/600, never wrap.
+- No gradient or single-accent-word headline treatments.
 
 ### Shape & spacing
 
-- Buttons: `rounded-full` (pill), padding `10px 22px`, Poppins 500 14px.
-- Cards/panels/modals: `rounded-2xl`, `1px solid var(--border-subtle)`, padding 20–24px.
+- Buttons: `rounded-lg` (8px), padding `10px 16px`, 14px/600. Pills (`rounded-full`) are for status, chips and avatars only, never for actions.
+- Cards/panels/modals: `rounded-2xl`, `1px solid var(--border-subtle)`, white with `--shadow-surface`, padding 20 to 24px.
 - Inputs: `rounded-xl`, `--bg-base` fill, subtle border, `--border-strong` + soft purple ring on focus.
 - Spacing scale: 4px base; page gutters 24px; card gaps 16px.
 
 ## 3. Component specifications
 
-**App shell:** Fixed left sidebar (`--bg-nav`, 240px, collapsible to icons) with the product logo top-left, nav items for the three tabs (Brand Images, Content Engine, Approval Queue) plus Admin. Active item: `--primary` pill background exactly like the site's active "Home" nav state. Top bar: page title, global "Generate" button (primary pill), user avatar menu.
+**App shell:** Fixed left sidebar (`--bg-nav`, 240px, collapsible to icons) with the ink "CS" mark and wordmark top-left, and nav items for every tab plus Admin. Active item: a 10% cobalt tint, cobalt text, and a 3px cobalt marker on the left edge. Top bar: translucent canvas with blur, page title, AI spend today, the global "Generate" button (primary), and the user menu.
 
-**Buttons:** Primary = solid `--primary` pill with glow ("Watch Free Training" style). Secondary = transparent with `--border-subtle`, text `--text-primary` ("Explore the Blueprint" style). Destructive = outlined `--danger`. Ghost = text-only `--primary-soft`. Loading state: spinner replaces label, width locked to prevent jump.
+**Buttons:** Primary = solid `--primary`, `--on-primary` text, cobalt drop shadow; one per screen region. Secondary = white with a hairline border that turns cobalt on hover. Destructive = outlined `--danger`. Ghost = text-only `--primary-soft`. Loading state: spinner replaces label, width locked to prevent jump.
 
 **Status pills** (the second place visual energy goes — this is the operational heart of the app):
 
@@ -70,7 +73,7 @@ Glow: primary buttons get `box-shadow: 0 0 24px rgba(124,58,237,0.45)`; intensif
 | `regenerating` | `--info` outline, animated spinner dot |
 | `failed` | `--danger` tint, retry affordance beside it |
 
-Pills use the utility type style (11px uppercase). Identical component everywhere a status appears — queue, cards, detail views, admin.
+Pills are 11px/600 sentence case and never wrap. Identical component everywhere a status appears — queue, cards, detail views, admin.
 
 **Approval Queue (Tab 3):** Week view — 7 day columns on desktop, stacked day list on mobile. Each content item is a compact card: platform icon, thumbnail (16:9 for video, 1:1 for image posts), truncated caption, status pill. Clicking opens a right-side drawer (not a modal): full preview, platform, schedule, generation inputs, and the action row — **Approve** (primary pill) and **Request edits** (secondary). "Request edits" reveals an inline comment textarea with a required-field state and a "Send for regeneration" button. Approving fires a toast: "Approved — publishing to {platform}." Filters above the board: platform, status, type.
 
@@ -97,7 +100,7 @@ Purposeful and sparse — this is a tool, not a landing page:
 - Keyboard: full tab order through the queue; Enter opens drawer; visible focus ring (`2px var(--primary-soft)` offset ring) on every interactive element.
 - Contrast: `--text-secondary` on `--bg-raised` must pass WCAG AA for body sizes — verify, don't assume.
 - All async surfaces have explicit loading, empty, and error states. No layout shift when statuses update.
-- Dark theme only for MVP — do not build a light theme toggle.
+- Light theme only. Do not add a theme toggle without a token pass for every surface.
 
 ## 6. Tailwind wiring
 

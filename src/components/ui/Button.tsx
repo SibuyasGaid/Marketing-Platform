@@ -3,12 +3,12 @@ import type { ButtonHTMLAttributes } from "react";
 type ButtonVariant = "primary" | "secondary" | "destructive" | "ghost";
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  // Solid primary pill with glow — the "Watch Free Training" treatment.
+  // Solid cobalt: the one action that moves work forward on a screen.
   primary:
-    "bg-primary text-text-primary shadow-glow hover:bg-primary-bright hover:shadow-glow-hover",
-  // Transparent with subtle border — the "Explore the Blueprint" treatment.
+    "bg-primary text-on-primary shadow-glow hover:bg-primary-bright hover:shadow-glow-hover active:translate-y-px",
+  // White sheet with a hairline border: everything else.
   secondary:
-    "border border-border-subtle text-text-primary hover:bg-bg-hover",
+    "border border-border-subtle bg-bg-raised text-text-primary hover:border-border-strong hover:bg-bg-hover",
   destructive:
     "border border-danger text-danger hover:bg-danger/10",
   ghost: "text-primary-soft hover:text-primary-bright",
@@ -20,7 +20,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * The only button in the app (docs/DESIGN.md §3). Pill shape, Poppins 500 14px.
+ * The only button in the app (docs/DESIGN.md §3). 8px radius, 14px/600.
  * Loading state swaps the label for a spinner with width locked so nothing jumps.
  */
 export function Button({
@@ -38,7 +38,7 @@ export function Button({
     <button
       type={type}
       disabled={disabled || isLoading}
-      className={`relative inline-flex items-center justify-center rounded-full px-[22px] py-[10px] font-display text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`}
+      className={`relative inline-flex items-center justify-center rounded-lg px-4 py-2.5 font-display text-sm font-semibold transition-[background-color,box-shadow,transform,border-color] disabled:cursor-not-allowed disabled:opacity-50 ${VARIANT_CLASSES[variant]} ${className}`}
       {...rest}
     >
       <span className={isLoading ? "invisible" : undefined}>{children}</span>

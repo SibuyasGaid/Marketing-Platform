@@ -25,6 +25,8 @@ const AVATAR_PLATFORMS = [
 ] as const;
 
 const initialState: ActionState = { error: null };
+// Seed value for the background color picker, not a UI color (the picker's own value).
+const DEFAULT_BACKGROUND_COLOR = "#0B2A4A";
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-bg-base px-3 py-2 text-sm text-text-primary outline-none transition-colors focus:border-border-strong";
 
@@ -43,7 +45,7 @@ export function AvatarStudio({
   const [avatarId, setAvatarId] = useState("");
   const [platforms, setPlatforms] = useState<Set<string>>(new Set(["instagram"]));
   const [bgMode, setBgMode] = useState<"original" | "color" | "image">("original");
-  const [backgroundColor, setBackgroundColor] = useState("#1A0F3A");
+  const [backgroundColor, setBackgroundColor] = useState(DEFAULT_BACKGROUND_COLOR);
   const [bgImage, setBgImage] = useState<{ path: string; previewUrl: string } | null>(null);
   const [bgUploading, startBgUpload] = useTransition();
   const [bgError, setBgError] = useState<string | null>(null);
@@ -158,7 +160,7 @@ export function AvatarStudio({
                 }}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   brand === account.slug
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -196,7 +198,7 @@ export function AvatarStudio({
                 aria-pressed={platforms.has(option.key)}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   platforms.has(option.key)
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -238,7 +240,7 @@ export function AvatarStudio({
                 aria-pressed={bgMode === option.key}
                 className={`rounded-full px-3.5 py-1.5 font-display text-[13px] font-medium transition-colors ${
                   bgMode === option.key
-                    ? "bg-primary text-text-primary"
+                    ? "bg-primary text-on-primary"
                     : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                 }`}
               >
@@ -282,7 +284,7 @@ export function AvatarStudio({
                   </button>
                 </span>
               ) : null}
-              <label className="cursor-pointer rounded-full border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover">
+              <label className="cursor-pointer rounded-lg border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover">
                 {bgUploading ? "Uploading…" : bgImage ? "Replace image" : "Choose image"}
                 <input
                   type="file"
@@ -356,7 +358,7 @@ export function AvatarStudio({
                 </button>
               </span>
             ) : null}
-            <label className="cursor-pointer rounded-full border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover">
+            <label className="cursor-pointer rounded-lg border border-border-subtle px-3.5 py-1.5 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover">
               {coverUploading ? "Uploading…" : cover ? "Replace cover" : "Upload cover"}
               <input
                 type="file"
@@ -453,7 +455,7 @@ export function AvatarStudio({
                   )}
                   <span
                     className={`type-utility absolute inset-x-0 bottom-0 truncate px-1 py-0.5 ${
-                      selected ? "bg-primary text-text-primary" : "bg-bg-nav/80 text-text-secondary"
+                      selected ? "bg-primary text-on-primary" : "bg-bg-nav/80 text-text-secondary"
                     }`}
                   >
                     {avatar.personName}

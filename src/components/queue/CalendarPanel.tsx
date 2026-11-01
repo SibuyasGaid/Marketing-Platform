@@ -117,7 +117,7 @@ Content calendar · schedule ahead
                   onClick={() => setBrand(option.slug)}
                   className={`rounded-full px-3 py-1 font-display text-[13px] font-medium transition-colors ${
                     brand === option.slug
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
@@ -137,7 +137,7 @@ Content calendar · schedule ahead
                   aria-pressed={platforms.has(platform)}
                   className={`rounded-full px-3 py-1 font-display text-[13px] font-medium capitalize transition-colors ${
                     platforms.has(platform)
-                      ? "bg-primary text-text-primary"
+                      ? "bg-primary text-on-primary"
                       : "border border-border-subtle text-text-secondary hover:bg-bg-hover"
                   }`}
                 >
@@ -232,7 +232,7 @@ function GenerateNowButton({ calendarDate }: { calendarDate: string }) {
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-full border border-border-subtle px-3 py-1 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover disabled:opacity-50"
+        className="rounded-lg border border-border-subtle px-3 py-1 font-display text-[13px] font-medium text-text-primary hover:bg-bg-hover disabled:opacity-50"
       >
         {isPending ? "Queuing…" : "Generate now"}
       </button>

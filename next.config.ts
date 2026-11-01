@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // This repo maintains its own AGENTS.md; stop `next dev` appending to it.
+  agentRules: false,
   // ffmpeg-static ships a native binary; keep it external (not webpack-bundled)
   // and trace the binary into the Inngest function that runs clip cutting.
   serverExternalPackages: ["ffmpeg-static"],

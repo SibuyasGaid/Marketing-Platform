@@ -84,11 +84,11 @@ describe("buildImagePrompt", () => {
       referencePeople: [],
     });
     expect(prompt).toContain("Demo Brand");
-    expect(prompt).toContain("#1A0F3A");
-    expect(prompt).toContain("#892BE2");
-    expect(prompt).toContain("#FFD600");
-    expect(prompt).toContain("Poppins");
-    expect(prompt).toContain("Open Sans");
+    expect(prompt).toContain("#0B2A4A");
+    expect(prompt).toContain("#2EC4B6");
+    expect(prompt).toContain("#FF6B57");
+    expect(prompt).toContain("Archivo Black");
+    expect(prompt).toContain("Inter");
     // Brand colors are authoritative; the preset palette is demoted to secondary.
     expect(prompt).toContain("Brand colors (authoritative)");
     expect(prompt).toContain("secondary to the brand colors above");
@@ -107,10 +107,10 @@ describe("buildImagePrompt", () => {
       referencePeople: [],
     });
     expect(prompt).toContain("Brand colors (authoritative)");
-    expect(prompt).toContain("near-black navy");
+    expect(prompt).toContain("bone-white");
     expect(prompt).toContain("Composition and layout patterns");
-    // Its own look, not Demo Brand's violet-on-indigo palette.
-    expect(prompt).not.toContain("#1A0F3A");
+    // Its own look, not Demo Brand's aqua-on-ocean palette.
+    expect(prompt).not.toContain("#0B2A4A");
   });
 
   it("appends every adjustment note as delimited data for regeneration", () => {
